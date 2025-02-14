@@ -26,7 +26,7 @@ chmod +x install_firacode.sh
 
 ### 3. Executar o Script
 
-Após o download, abra um terminal e navegue até o diretório onde o script foi salvo. Em seguida, torne o script executável com o comando:
+Após torna o arquivo executável abra o terminal e digite o código abaixo e dê enter:
 
 ```bash
 ./install_firacode.sh
