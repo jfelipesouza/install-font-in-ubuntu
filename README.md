@@ -68,6 +68,6 @@ Atualmente, o script instala as seguintes fontes:
 
 Qualquer novo script install_*.sh adicionado a este repositório no futuro será incluído automaticamente na instalação.
 
-### Contribua
+## Contribua
 
 Se você encontrar algum problema ou tiver sugestões de melhoria, sinta-se à vontade para abrir uma <strong>issue</strong> ou submeter um <strong>pull request</strong>. Fique à vontade para contribui
