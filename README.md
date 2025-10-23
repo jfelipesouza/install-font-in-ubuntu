@@ -6,14 +6,14 @@ Este repositório contém um script que instala a fonte **FiraCode** no seu sist
 
 ### 1. Baixar o Script
 
-Primeiro, baixe o script `install_firacode.sh` para o seu sistema. Você pode fazer isso manualmente ou via linha de comando com o `wget`.
+Primeiro, baixe o script `install.sh` para o seu sistema. Você pode fazer isso manualmente ou via linha de comando com o `wget`.
 
 Para baixar manualmente, acesse o [repositório no GitHub](https://github.com/jfelipesouza/install-font-in-ubutu) e faça o download do arquivo.
 
 Se preferir via linha de comando, use:
 
 ```bash
-wget https://github.com/jfelipesouza/install-font-in-ubutu/raw/main/install_firacode.sh
+wget https://github.com/jfelipesouza/install-font-in-ubutu/raw/main/install.sh
 ```
 
 ### 2. Tornar o Script Executável
@@ -21,7 +21,7 @@ wget https://github.com/jfelipesouza/install-font-in-ubutu/raw/main/install_fira
 Após o download, abra um terminal e navegue até o diretório onde o script foi salvo. Em seguida, torne o script executável com o comando:
 
 ```bash
-chmod +x install_firacode.sh
+chmod +x install.sh
 ```
 
 ### 3. Executar o Script
@@ -29,7 +29,7 @@ chmod +x install_firacode.sh
 Após torna o arquivo executável abra o terminal e digite o código abaixo e dê enter:
 
 ```bash
-./install_firacode.sh
+./install.sh
 ```
 
 ### Contribua
