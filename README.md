@@ -1,73 +1,95 @@
-# Instalação da Fonte FiraCode no Ubuntu
+# 🖋️ Instalação das Fontes FiraCode e JetBrains Mono no Ubuntu
 
-Este repositório contém um script que instala a fonte **FiraCode** e **JetBrains Mono** no seu sistema Ubuntu de forma global. O script baixa o arquivo ZIP com a fonte hospedado em um repositório do GitHub, descompacta e instala as fontes no sistema.
+Este repositório contém scripts que instalam as fontes **FiraCode** e **JetBrains Mono** no Ubuntu (ou distribuições baseadas em Debian) de forma rápida e automatizada.
 
+Os scripts podem usar **arquivos locais** (se já estiverem na pasta) ou baixá-los automaticamente do GitHub caso não estejam disponíveis.
 
-## Como Usar
-Existem duas maneiras de executar o instalador. O método direto é o mais recomendado pela sua simplicidade.
+---
 
+## 🚀 Como Usar
 
-## Método 1: Execução Direta (Recomendado)
+Existem duas maneiras de instalar:
 
-Este é o método mais rápido. Ele baixa e executa o script de instalação com um único comando, sem salvar arquivos permanentemente.
+* **Método 1 (Recomendado): Execução direta via terminal**
+* **Método 2: Download manual e execução local**
 
-Abra seu terminal e cole **um** dos comandos abaixo:
+---
 
-**Usando `curl`:**
-```bash
-curl -sL [https://raw.githubusercontent.com/jfelipesouza/install-font-in-ubuntu/main/install.sh](https://raw.githubusercontent.com/jfelipesouza/install-font-in-ubuntu/main/install.sh) | sudo bash
-```
+## 🧩 Método 1: Execução Direta (Recomendado)
 
-**Usando `wget`:**
-```bash
-wget -qO - [https://raw.githubusercontent.com/jfelipesouza/install-font-in-ubuntu/main/install.sh](https://raw.githubusercontent.com/jfelipesouza/install-font-in-ubuntu/main/install.sh) | sudo bash
-```
+Baixa e executa o instalador automaticamente, sem precisar salvar arquivos.
 
-**Nota:** O script pedirá sua senha sudo pois ele instala as fontes no diretório de sistema /usr/share/fonts, que requer privilégios de administrador.
-
-## Método 2: Execução Direta (Recomendado)
-Se você prefere baixar o script, inspecioná-lo e executá-lo manualmente, siga estes passos:
-
-### Passos para Instalação
-
-### 1. Baixar o Script
-
-Primeiro, baixe o script `install.sh` para o seu sistema. Você pode fazer isso manualmente ou via linha de comando com o `wget`.
-
-Para baixar manualmente, acesse o [repositório no GitHub](https://github.com/jfelipesouza/install-font-in-ubutu) e faça o download do arquivo.
-
-Se preferir via linha de comando, use:
+### Usando `curl`:
 
 ```bash
-wget [https://raw.githubusercontent.com/jfelipesouza/install-font-in-ubuntu/main/install.sh](https://raw.githubusercontent.com/jfelipesouza/install-font-in-ubuntu/main/install.sh)
-
+curl -sL https://raw.githubusercontent.com/jfelipesouza/install-font-in-ubuntu/main/install.sh | sudo bash
 ```
 
-### 2. Tornar o Script Executável
+### Usando `wget`:
 
-Após o download, abra um terminal e navegue até o diretório onde o script foi salvo. Em seguida, torne o script executável com o comando:
+```bash
+wget -qO - https://raw.githubusercontent.com/jfelipesouza/install-font-in-ubuntu/main/install.sh | sudo bash
+```
+
+> 💡 **Nota:** É necessário usar `sudo` porque as fontes são instaladas em `/usr/share/fonts`, um diretório de sistema.
+
+---
+
+## 🧠 Método 2: Instalação Manual (Local)
+
+Permite inspecionar o script antes da execução.
+
+### 1️⃣ Baixar o script
+
+Baixe o `install.sh` diretamente do GitHub:
+
+```bash
+wget https://raw.githubusercontent.com/jfelipesouza/install-font-in-ubuntu/main/install.sh
+```
+
+Ou acesse o repositório:
+👉 [https://github.com/jfelipesouza/install-font-in-ubuntu](https://github.com/jfelipesouza/install-font-in-ubuntu)
+
+---
+
+### 2️⃣ Tornar o script executável
 
 ```bash
 chmod +x install.sh
 ```
 
-### 3. Executar o Script
+---
 
-Após torna o arquivo executável abra o terminal e digite o código abaixo e dê enter:
+### 3️⃣ Executar o instalador
 
 ```bash
 sudo ./install.sh
 ```
 
-## Fontes Instaladas
-Atualmente, o script instala as seguintes fontes:
+O script verificará se os arquivos locais (`install_firacode.sh`, `install_jetbrainsmono.sh`) estão disponíveis.
+Se não estiverem, ele os baixa automaticamente e executa.
 
- - Fira Code (com ligatures)
+---
 
- - JetBrains Mono (com ligatures)
+## 🖍️ Fontes Instaladas
 
-Qualquer novo script install_*.sh adicionado a este repositório no futuro será incluído automaticamente na instalação.
+* **Fira Code** (com ligatures)
+* **JetBrains Mono** (com ligatures)
 
-## Contribua
+> 🧩 Qualquer novo `install_*.sh` adicionado a este repositório será detectado automaticamente pelo instalador.
 
-Se você encontrar algum problema ou tiver sugestões de melhoria, sinta-se à vontade para abrir uma <strong>issue</strong> ou submeter um <strong>pull request</strong>. Fique à vontade para contribui
+---
+
+## 💬 Contribuição
+
+Encontrou um problema ou tem uma sugestão?
+Abra uma **issue** ou envie um **pull request**!
+
+Repositório:
+👉 [https://github.com/jfelipesouza/install-font-in-ubuntu](https://github.com/jfelipesouza/install-font-in-ubuntu)
+
+---
+
+🛠️ **Autor:** [João Felipe Souza](https://github.com/jfelipesouza)
+📅 **Versão:** 2.0
+📄 Licença: MIT

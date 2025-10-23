@@ -1,32 +1,38 @@
 #!/bin/bash
 
-# URL corrigida (ubuntu em vez de ubutu)
+# Caminho local e remoto do pacote de fontes
+LOCAL_ZIP_PATH="./Fira_Code_v6.2.zip"
 GITHUB_URL="https://github.com/jfelipesouza/install-font-in-ubuntu/raw/main/Fira_Code_v6.2.zip"
 
-# Diretório onde as fontes serão instaladas
-FONT_DIR="/usr/share/fonts/truetype/firacode"
+# Diretório de instalação local do usuário
+FONT_DIR="$HOME/.local/share/fonts/FiraCode"
 
-# Cria o diretório de fontes, caso não exista
-# (sudo removido)
-mkdir -p $FONT_DIR
+# Caminho temporário (caso precise baixar)
+TMP_ZIP_PATH="/tmp/firacode.zip"
 
-# Baixa o arquivo ZIP com as fontes
-echo "Baixando FiraCode do GitHub..."
-wget -O /tmp/firacode.zip $GITHUB_URL
+echo "Criando diretório local de fontes..."
+mkdir -p "$FONT_DIR"
 
-# Descompacta o arquivo ZIP
-# (sudo removido)
-echo "Descompactando o arquivo..."
-unzip -o /tmp/firacode.zip -d $FONT_DIR
+# Verifica se o arquivo existe localmente
+if [ -f "$LOCAL_ZIP_PATH" ]; then
+    echo "📦 Arquivo local encontrado: $LOCAL_ZIP_PATH"
+    ZIP_SOURCE="$LOCAL_ZIP_PATH"
+else
+    echo "🌐 Arquivo local não encontrado. Baixando do GitHub..."
+    wget -O "$TMP_ZIP_PATH" "$GITHUB_URL"
+    ZIP_SOURCE="$TMP_ZIP_PATH"
+fi
 
-# Atualiza o cache de fontes do sistema
-# (sudo removido)
-echo "Atualizando cache de fontes..."
-fc-cache -fv
+echo "📂 Extraindo fontes para $FONT_DIR..."
+unzip -o "$ZIP_SOURCE" -d "$FONT_DIR"
 
-# Limpeza (remove o arquivo ZIP temporário)
-echo "Limpando arquivos temporários..."
-rm /tmp/firacode.zip
+echo "🔄 Atualizando cache de fontes..."
+fc-cache -fv "$FONT_DIR"
 
-# Mensagem final
-echo "FiraCode instalada com sucesso!"
+# Remove o arquivo temporário, se foi baixado
+if [ "$ZIP_SOURCE" == "$TMP_ZIP_PATH" ]; then
+    echo "🧹 Limpando arquivo temporário..."
+    rm "$TMP_ZIP_PATH"
+fi
+
+echo "✅ Fonte Fira Code instalada com sucesso em $FONT_DIR"

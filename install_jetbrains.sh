@@ -1,36 +1,38 @@
 #!/bin/bash
 
-# URL corrigida (ubuntu em vez de ubutu)
+# Caminho local e remoto do pacote de fontes
+LOCAL_ZIP_PATH="./JetBrainsMono-2.304.zip"
 GITHUB_URL="https://github.com/jfelipesouza/install-font-in-ubuntu/raw/main/JetBrainsMono-2.304.zip"
 
-# Diretório onde as fontes serão instaladas
-FONT_DIR="/usr/share/fonts/truetype/jetbrainsmono"
+# Diretório de instalação local do usuário
+FONT_DIR="$HOME/.local/share/fonts/JetBrainsMono" 
 
-# Caminho temporário para o arquivo baixado
-TMP_ZIP_PATH="/tmp/jetbrainsmono.zip"
+# Caminho temporário (caso precise baixar)
+TMP_ZIP_PATH="/tmp/JetBrainsMono.zip"
 
-# Cria o diretório de fontes, caso não exista
-# (sudo removido)
-echo "Criando diretório $FONT_DIR..."
+echo "Criando diretório local de fontes..." 
 mkdir -p "$FONT_DIR"
 
-# Baixa o arquivo .ZIP com as fontes
-echo "Baixando JetBrains Mono do GitHub..."
-wget -O "$TMP_ZIP_PATH" "$GITHUB_URL"
+# Verifica se o arquivo existe localmente
+if [ -f "$LOCAL_ZIP_PATH" ]; then
+    echo "📦 Arquivo local encontrado: $LOCAL_ZIP_PATH"
+    ZIP_SOURCE="$LOCAL_ZIP_PATH"
+else
+    echo "🌐 Arquivo local não encontrado. Baixando do GitHub..."
+    wget -O "$TMP_ZIP_PATH" "$GITHUB_URL"
+    ZIP_SOURCE="$TMP_ZIP_PATH"
+fi
 
-# Descompacta o arquivo
-# (sudo removido)
-echo "Descompactando o arquivo..."
-unzip -o "$TMP_ZIP_PATH" -d "$FONT_DIR"
+echo "📂 Extraindo fontes para $FONT_DIR..."
+unzip -o "$ZIP_SOURCE" -d "$FONT_DIR"
 
-# Atualiza o cache de fontes do sistema
-# (sudo removido)
-echo "Atualizando cache de fontes..."
-fc-cache -fv
+echo "🔄 Atualizando cache de fontes..."
+fc-cache -fv "$FONT_DIR"
 
-# Limpeza (remove o arquivo .ZIP temporário)
-echo "Limpando arquivos temporários..."
-rm "$TMP_ZIP_PATH"
+# Remove o arquivo temporário, se foi baixado
+if [ "$ZIP_SOURCE" == "$TMP_ZIP_PATH" ]; then
+    echo "🧹 Limpando arquivo temporário..."
+    rm "$TMP_ZIP_PATH"
+fi
 
-# Mensagem final
-echo "Fonte JetBrains Mono instalada com sucesso!"
+echo "✅ Fonte JetBrains Mono instalada com sucesso em $FONT_DIR"
