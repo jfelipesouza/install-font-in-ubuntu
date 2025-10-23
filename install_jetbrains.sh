@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# URL do repositório do GitHub onde o arquivo .ZIP está hospedado
-GITHUB_URL="https://github.com/jfelipesouza/install-font-in-ubutu/raw/main/JetBrainsMono-2.304.zip"
+# URL corrigida (ubuntu em vez de ubutu)
+GITHUB_URL="https://github.com/jfelipesouza/install-font-in-ubuntu/raw/main/JetBrainsMono-2.304.zip"
 
 # Diretório onde as fontes serão instaladas
 FONT_DIR="/usr/share/fonts/truetype/jetbrainsmono"
@@ -10,20 +10,23 @@ FONT_DIR="/usr/share/fonts/truetype/jetbrainsmono"
 TMP_ZIP_PATH="/tmp/jetbrainsmono.zip"
 
 # Cria o diretório de fontes, caso não exista
+# (sudo removido)
 echo "Criando diretório $FONT_DIR..."
-sudo mkdir -p "$FONT_DIR"
+mkdir -p "$FONT_DIR"
 
 # Baixa o arquivo .ZIP com as fontes
 echo "Baixando JetBrains Mono do GitHub..."
 wget -O "$TMP_ZIP_PATH" "$GITHUB_URL"
 
 # Descompacta o arquivo
+# (sudo removido)
 echo "Descompactando o arquivo..."
-sudo unzip -o "$TMP_ZIP_PATH" -d "$FONT_DIR"
+unzip -o "$TMP_ZIP_PATH" -d "$FONT_DIR"
 
 # Atualiza o cache de fontes do sistema
+# (sudo removido)
 echo "Atualizando cache de fontes..."
-sudo fc-cache -fv
+fc-cache -fv
 
 # Limpeza (remove o arquivo .ZIP temporário)
 echo "Limpando arquivos temporários..."
