@@ -17,9 +17,8 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 # --- Configuração do Repositório ---
-# (Baseado no seu contexto)
 REPO_USER="jfelipesouza"
-REPO_NAME="install-font-in-ubutu"
+REPO_NAME="install-font-in-ubuntu" # <-- CORRIGIDO
 REPO_BRANCH="main"
 # ------------------------------------
 
@@ -75,8 +74,6 @@ for SCRIPT_NAME in $SCRIPT_LIST; do
     chmod +x "$SCRIPT_NAME"
     
     # Executa o script
-    # (Já estamos como root, então os comandos 'sudo'
-    # dentro dos scripts filhos funcionarão)
     echo "Executando $SCRIPT_NAME..."
     ./"$SCRIPT_NAME"
     
