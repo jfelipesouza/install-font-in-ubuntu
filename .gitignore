@@ -1,0 +1,24 @@
+# Ignorar pastas de fontes descompactadas
+
+JetBrainsMono*/
+FiraCode*/
+fonts*/
+*.ttf
+*.otf
+
+# Ignorar arquivos temporários
+
+*.zip
+/tmp/
+*.log
+
+# Ignorar arquivos de backup e sistema
+
+*~
+.DS_Store
+Thumbs.db
+
+# Ignorar diretórios do sistema e editor
+
+.vscode/
+.idea/
