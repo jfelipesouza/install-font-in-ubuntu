@@ -1,24 +1,4 @@
 # Ignorar pastas de fontes descompactadas
 
-JetBrainsMono*/
-FiraCode*/
-fonts*/
-*.ttf
-*.otf
-
-# Ignorar arquivos temporários
-
-*.zip
-/tmp/
-*.log
-
-# Ignorar arquivos de backup e sistema
-
-*~
-.DS_Store
-Thumbs.db
-
-# Ignorar diretórios do sistema e editor
-
-.vscode/
-.idea/
+Fira_Code_v6.2/
+JetBrainsMono-2.304/
