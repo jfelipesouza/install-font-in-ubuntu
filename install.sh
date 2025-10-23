@@ -1,12 +1,5 @@
 #!/bin/bash
 
-# ---
-# Script de Instalação de Fontes
-#
-# Este script busca dinamicamente no repositório GitHub todos os
-# scripts de instalação (padrão: install_*.sh) e os executa
-# um por um.
-# ---
 
 # 1. Verifica se está sendo executado como root (sudo)
 if [ "$EUID" -ne 0 ]; then
@@ -18,34 +11,26 @@ fi
 
 # --- Configuração do Repositório ---
 REPO_USER="jfelipesouza"
-REPO_NAME="install-font-in-ubuntu" # <-- CORRIGIDO
+REPO_NAME="install-font-in-ubuntu"
 REPO_BRANCH="main"
 # ------------------------------------
 
 # URL base para baixar os arquivos "raw"
 BASE_RAW_URL="https://raw.githubusercontent.com/$REPO_USER/$REPO_NAME/$REPO_BRANCH"
 
-# URL da API do GitHub para listar o conteúdo do diretório raiz
-API_URL="https://api.github.com/repos/$REPO_USER/$REPO_NAME/contents/?ref=$REPO_BRANCH"
+# --- Lista Explícita de Scripts ---
+# Em vez de usar a API, definimos os scripts manualmente.
+SCRIPT_LIST=(
+    "install_firacode.sh"
+    "install_jetbrains.sh"
+)
+# ----------------------------------
 
-echo "Buscando lista de scripts de instalação no repositório..."
-
-# Usamos curl para acessar a API, grep para achar as linhas com "name",
-# e sed para extrair apenas o nome do arquivo que bate com o padrão.
-SCRIPT_LIST=$(curl -s "$API_URL" | \
-              grep '"name": "install_.*\.sh"' | \
-              sed -n 's/.*"name": "\(install_.*\.sh\)".*/\1/p')
-
-if [ -z "$SCRIPT_LIST" ]; then
-    echo "Nenhum script de instalação (install_*.sh) foi encontrado no repositório."
-    exit 1
-fi
-
-echo "Scripts encontrados:"
-echo "$SCRIPT_LIST"
+echo "Scripts a serem instalados:"
+printf " - %s\n" "${SCRIPT_LIST[@]}"
 echo ""
 
-# Cria um diretório temporário seguro para baixar e executar os scripts
+# Cria um diretório temporário seguro
 TMP_DIR=$(mktemp -d)
 if [ ! -d "$TMP_DIR" ]; then
     echo "Falha ao criar diretório temporário."
@@ -53,8 +38,8 @@ if [ ! -d "$TMP_DIR" ]; then
 fi
 cd "$TMP_DIR"
 
-# Faz o loop em cada nome de script encontrado
-for SCRIPT_NAME in $SCRIPT_LIST; do
+# Faz o loop em cada nome de script da lista
+for SCRIPT_NAME in "${SCRIPT_LIST[@]}"; do
     SCRIPT_URL="$BASE_RAW_URL/$SCRIPT_NAME"
     
     echo "=================================================="
@@ -69,6 +54,19 @@ for SCRIPT_NAME in $SCRIPT_LIST; do
         echo "Pulando..."
         continue
     fi
+
+    # --- Verificação de Segurança ---
+    # Verifica se o arquivo baixado é realmente um script bash,
+    # e não um erro (como o 429 que você viu)
+    FIRST_LINE=$(head -n 1 "$SCRIPT_NAME")
+    if [[ "$FIRST_LINE" != "#!/bin/bash" ]]; then
+        echo "ERRO: O arquivo baixado $SCRIPT_NAME não é um script bash válido!"
+        echo "Conteúdo recebido (provavelmente um erro do GitHub):"
+        cat "$SCRIPT_NAME"
+        echo "Pulando..."
+        continue
+    fi
+    # --- Fim da Verificação ---
     
     # Dá permissão de execução
     chmod +x "$SCRIPT_NAME"
