@@ -6,7 +6,6 @@ Este repositório contém um script que instala a fonte **FiraCode** e **JetBrai
 ## Como Usar
 Existem duas maneiras de executar o instalador. O método direto é o mais recomendado pela sua simplicidade.
 
----
 
 ## Método 1: Execução Direta (Recomendado)
 
@@ -29,7 +28,7 @@ wget -qO - [https://raw.githubusercontent.com/jfelipesouza/install-font-in-ubunt
 ## Método 2: Execução Direta (Recomendado)
 Se você prefere baixar o script, inspecioná-lo e executá-lo manualmente, siga estes passos:
 
-## Passos para Instalação
+### Passos para Instalação
 
 ### 1. Baixar o Script
 
