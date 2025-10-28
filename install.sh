@@ -13,8 +13,8 @@ unzip -o "$INSTALL_DIR/Fira_Code_v6.2.zip" -d "$INSTALL_DIR/Fira_Code_v6.2"
 unzip -o "$INSTALL_DIR/JetBrainsMono-2.304.zip" -d "$INSTALL_DIR/JetBrainsMono-2.304"
 
 echo "📁 Copiando fontes para $FONT_DIR..."
-find "$INSTALL_DIR/Fira_Code_v6.2" -name "*.ttf" -exec cp {} "$FONT_DIR" ;
-find "$INSTALL_DIR/JetBrainsMono-2.304" -name "*.ttf" -exec cp {} "$FONT_DIR" ;
+find "$INSTALL_DIR/Fira_Code_v6.2" -name "*.ttf" -exec cp {} "$FONT_DIR" \;
+find "$INSTALL_DIR/JetBrainsMono-2.304" -name "*.ttf" -exec cp {} "$FONT_DIR" \;
 
 echo "🔄 Atualizando cache de fontes..."
 fc-cache -fv > /dev/null
